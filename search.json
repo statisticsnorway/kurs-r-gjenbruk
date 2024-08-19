@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kurs i gjenbruk av kode i R",
+    "section": "",
+    "text": "Introduksjon til gjenbruk av kode\nGjenbruk er et av åtte grunnleggende IT-arkitekturprinsipper vi bruker i SSB. Gjenbruk gjør at man slipper å kode det samme som noen allerede har gjort, og er lurt med tanke på kostnadseffektivitet, vedlikehold og sikkerhet.\nDet er 4 type gjenbruk som vi bruke i SSB. Dette kurset fokusere på det første:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kurs i gjenbruk av kode i R</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#sec-introduction",
+    "href": "index.html#sec-introduction",
+    "title": "Kurs i gjenbruk av kode i R",
+    "section": "",
+    "text": "Gjenbruk i egen kode: Gjenbruk i egen kode vil si å skille ut duplisert kode til loops eller egne funksjoner.\nGjenbruk ved kopiering: Dette er gjenbruk ved klipp og lim fra annen kode, enten ekstern (stack overflow, google, ChatGPT etc) eller intern.\nGjenbruk av biblioteker: Dette er gjenbruk ved klipp og lim fra annen kode, enten ekstern (stack overflow, google, ChatGPT etc) eller intern.\nFellestjenester: Fellestjenester er felles behov som ikke kan løses av bibliotek alene. Dette omfatter blant annet plattformtjenester, mikrotjenester og GUI-baserte tjenester. Her er det snakk om interne tjenester som utvikles av SSB.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kurs i gjenbruk av kode i R</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#sec-gjenbruk",
+    "href": "index.html#sec-gjenbruk",
+    "title": "Kurs i gjenbruk av kode i R",
+    "section": "Gjenbruk i egen kode",
+    "text": "Gjenbruk i egen kode\nFordeler inkludere:\n\nUnngår duplisering, dvs. retting og forbedring ett sted i stedet for flere steder.\nMindre kompleksitet og mer lesbart.\nLettere å teste og refaktorere (endre kode til bedre struktur uten å endre funksjonalitet)\nBidrar til å generalisere koden, noe som letter gjenbruk.\n\nUlemper:\n\nMå utvikle og vedlikeholde koden selv.\nUnødvendig hvis det allerede finnes en funksjon i et bibliotek som gjør det samme.\nKompetanseterskel\n\nSe Beste praksis for gjenbruk av kode i SSB for mer detaljer og anbefalinger.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kurs i gjenbruk av kode i R</span>"
+    ]
+  },
+  {
+    "objectID": "kontroll.html",
+    "href": "kontroll.html",
+    "title": "Kontroll",
+    "section": "",
+    "text": "Små kontrollprosesser\nFor å sammenligne og gjøre noe basert på en betingelse kan vi bruke ifelse(). Vi må spesifisere betingelsen først, og så hva som skal returneres dersom betingelsen er sann, og så hva som skal returneres om betingelsen er usann.\nalder &lt;- c(49, 39, 51, 73, 41)\nifelse(alder &lt; 50, \"yngre\", \"eldre\")\n\n[1] \"yngre\" \"yngre\" \"eldre\" \"eldre\" \"yngre\"\nDette kan brukes for å lage nye variabler i et datasett:\nlibrary(tidyverse)\ndt &lt;- data.frame(id = 1:5, alder)\ndt %&gt;%\n  mutate(alder_kat = ifelse(alder &lt; 50, \"yngre\", \"eldre\"))\n\n  id alder alder_kat\n1  1    49     yngre\n2  2    39     yngre\n3  3    51     eldre\n4  4    73     eldre\n5  5    41     yngre",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kontroll</span>"
+    ]
+  },
+  {
+    "objectID": "kontroll.html#store-prosesser",
+    "href": "kontroll.html#store-prosesser",
+    "title": "Kontroll",
+    "section": "Store prosesser",
+    "text": "Store prosesser\nFor å kontrollere store/lengre prosesser kan vi benytte if og else. Disse kan gå over flere linjer og ta formatet:\n\nif (betingelsen){\n  print(\"gjør dette ...\")\n} else {\n  print(\"gjøre dette istedenfor ...\")\n}\n\nFor eksempel:\n\nif (all(dt$alder &lt; 70)){\n  print(\"Alle IOer er under 70\")\n} else {\n  print(\"Alle IOer med alder 70+ er fjernet.\")\n  dt %&gt;% \n    filter(alder &lt; 70)\n}\n\n[1] \"Alle IOer med alder 70+ er fjernet.\"\n\n\n  id alder\n1  1    49\n2  2    39\n3  3    51\n4  5    41",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kontroll</span>"
+    ]
+  },
+  {
+    "objectID": "loops.html",
+    "href": "loops.html",
+    "title": "Løkker",
+    "section": "",
+    "text": "For-løkker\nFor-løkker brukes til å kjøre gjennom kode et bestemt antall ganger\nDet er vanlig å kjøre gjennom en sekvens. For eks:\nalder &lt;- c(49, 39, 51, 73, 41)\n\nfor (i in 1:5){\n  print(i)\n  print(alder[i])\n}\n\n[1] 1\n[1] 49\n[1] 2\n[1] 39\n[1] 3\n[1] 51\n[1] 4\n[1] 73\n[1] 5\n[1] 41\nVi kan også lage løkker med en vektor:\nfor (a in alder){\n  print(a)\n}\n\n[1] 49\n[1] 39\n[1] 51\n[1] 73\n[1] 41",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Løkker</span>"
+    ]
+  },
+  {
+    "objectID": "loops.html#while-løkker",
+    "href": "loops.html#while-løkker",
+    "title": "Løkker",
+    "section": "While-løkker",
+    "text": "While-løkker\nWhile-løkker sjekk en betingelse for å bestemme om den skal fortsette å kjøre. \nFor eksempel:\n\nn &lt;- 1\nwhile (n &lt; 10){\n  print(n)\n  n &lt;- n + runif(1)\n}\n\n[1] 1\n[1] 1.458423\n[1] 2.129962\n[1] 2.447071\n[1] 3.297445\n[1] 3.536711\n[1] 3.852415\n[1] 4.380565\n[1] 4.77623\n[1] 5.227699\n[1] 6.042606\n[1] 7.035085\n[1] 7.079662\n[1] 7.132129\n[1] 7.40973\n[1] 7.789016\n[1] 8.598237\n[1] 9.54811\n[1] 9.884595\n\nn\n\n[1] 10.57961\n\n\nWhile-løkker brukes ofte i prosesser som har en tilfeldig komponent. I eksempelet over trekker runif() funksjonen et tilfeldig tall mellom 0 og 1.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Løkker</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html",
+    "href": "funksjoner.html",
+    "title": "Funksjoner",
+    "section": "",
+    "text": "Hva er en funksjon?\nEn funksjon er en kodedel som kan brukes om og om igjen. De ligner på SAS-makroer og brukes til å automatisere prosesser. Den har en input (det som sendes inn til funksjonen) og en output (det som kommer ut).\nEn parameter er tilleggsinformasjon som sendes inn til funksjonen for å spesifisere videre hva funksjonen skal gjøres.\nBruk av funksjoner kan være nyttig for gjenbruk og abstraksjon.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#lage-en-enkel-funksjon",
+    "href": "funksjoner.html#lage-en-enkel-funksjon",
+    "title": "Funksjoner",
+    "section": "Lage en enkel funksjon",
+    "text": "Lage en enkel funksjon\nVi lager en funksjon ved å allokere et navn og spesifisere function():\n\nmin_func &lt;- function(){\n  print(\"hello\")\n}\n\nEtterpå kan vi kjøre funksjonen med:\n\nmin_func()\n\n[1] \"hello\"",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#lage-en-funksjon-for-fylke",
+    "href": "funksjoner.html#lage-en-funksjon-for-fylke",
+    "title": "Funksjoner",
+    "section": "Lage en funksjon for fylke",
+    "text": "Lage en funksjon for fylke\nHer skal vi lage en funksjon som kan ta kommunenummer som input og returnere fylkenummer. Vi spesifiserer kommunenummer som en parameter i funksjonen. Vi bruker substr() for å plukke ut de første to sifferne.\n\nlage_fylke &lt;- function(kommunenr){\n  substr(kommunenr, 1, 2)\n}\n\nlage_fylke(\"0301\")\n\n[1] \"03\"\n\n\nFunksjoner kan gå over flere linjer. Den siste linjen er det som returneres. Hva som returneres kan også spesifiseres med return() ved behov, særlig nyttig i komplekse funksjoner med flere output.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#flere-parameter",
+    "href": "funksjoner.html#flere-parameter",
+    "title": "Funksjoner",
+    "section": "Flere parameter",
+    "text": "Flere parameter\nFunksjoner kan ta mer enn èn paramter. For eksempel i fylke-funksjonen kanskje vi ønsker å sjekke lengden for å se om ledende 0-ere har falt av.\n\nlage_fylke &lt;- function(kommunenr, sjekk_lengde){\n  if(sjekk_lengde == TRUE){\n    kommunenr &lt;- ifelse(nchar(kommunenr) == 3, \n                        paste(\"0\", kommunenr, sep = \"\"), \n                        kommunenr)\n  }\n  fylke &lt;- substr(kommunenr, 1, 2)\n  fylke\n}\n\n\nlage_fylke(kommunenr = \"301\", sjekk_lengde = TRUE)\n\n[1] \"03\"\n\nlage_fylke(kommunenr = \"301\", sjekk_lengde = FALSE)\n\n[1] \"30\"",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#standarddefault-parameter",
+    "href": "funksjoner.html#standarddefault-parameter",
+    "title": "Funksjoner",
+    "section": "Standard/default parameter",
+    "text": "Standard/default parameter\nVi kan sette standard parameter verdier for å slippe å spesifisere hver gang. For eksemepel, samme funksjon over kan ha sjekk_lengde=TRUE som standard parameter.\n\nlage_fylke &lt;- function(kommunenr, sjekk_lengde = TRUE){\n  if(sjekk_lengde == TRUE){\n    kommunenr &lt;- ifelse(nchar(kommunenr) == 3, \n                        paste(\"0\", kommunenr, sep = \"\"), \n                        kommunenr)\n  }\n  fylke &lt;- substr(kommunenr, 1, 2)\n  fylke\n}\n\nlage_fylke(\"301\")\n\n[1] \"03\"\n\n\nNoen ganger kalles disse for “named parameters” eller “keyword arguements”. Standard parameter kommer alltid til sist.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#globalt-vs-lokalt-miljø",
+    "href": "funksjoner.html#globalt-vs-lokalt-miljø",
+    "title": "Funksjoner",
+    "section": "Globalt vs, Lokalt-miljø",
+    "text": "Globalt vs, Lokalt-miljø\nNår vi lager en funksjon, lager vi et lite lokalt-miljø. Varaiabler som lagres inn i en funksjon påvirker ikke det globale miljøet og blir slettet når funksjonen er ferdigkjørt. For eksempel, om vi har en enkel funksjon som returnerer verdien av parameter x vil ikke dette påvirkes om vi har en x i det globale miljøet:\n\nfuncx &lt;- function(x){\n  x\n}\n\n\nx &lt;- 2\nfuncx(x = 4)\n\n[1] 4\n\nx\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "funksjoner.html#varsling-i-funksjoner",
+    "href": "funksjoner.html#varsling-i-funksjoner",
+    "title": "Funksjoner",
+    "section": "Varsling i funksjoner",
+    "text": "Varsling i funksjoner\nNoen ganger ønsker vi at funksjonen skal si ifra om noe er litt rart eller feil. For at funksjonen skal stoppe bruker vi stop(). For at det skal gi et varsel bruker vi warning().\nFor eksempel, her stopper funksjon om kommunenr kun er 2-siffer. Ved 3-siffer gis et varsel at en ledende 0 er lagt på.\n\nlage_fylke &lt;- function(kommunenr){\n  if (nchar(kommunenr) &lt;= 2){\n    stop(\"Kommune nummer var ikke gjeldig.\")\n  }\n  if (nchar(kommunenr) == 3){\n    warning(\"Kommunenummer er lendge 3 og har blitt fylt med en ledende 0\\n\")\n    kommunenr &lt;- paste(\"0\", kommunenr, sep = \"\")\n  }\n  fylke &lt;- substr(kommunenr, 1, 2)\n  fylke\n}\n\n\nlage_fylke(kommunenr = \"03\")\n\n\n\nlage_fylke(kommunenr = \"301\")\n\nWarning in lage_fylke(kommunenr = \"301\"): Kommunenummer er lendge 3 og har blitt fylt med en ledende 0\n\n\n[1] \"03\"\n\n\n\nlage_fylke(kommunenr = \"0301\")\n\n[1] \"03\"",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  }
+]
