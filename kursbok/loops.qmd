@@ -19,7 +19,7 @@ For å gjøre den samme prosessen flere ganger kan vi lage løkker. Løkker har 
 
 For-løkker brukes til å kjøre gjennom kode et bestemt antall ganger
 
-![](./images/forloop.PNG)
+![](./images/forloop.png)
 
 Det er vanlig å kjøre gjennom en sekvens. For eks:
 
