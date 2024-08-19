@@ -18,6 +18,11 @@ ifelse(alder < 50, "yngre", "eldre")
 
 Dette kan brukes for å lage nye variabler i et datasett:
 
+```{r, echo=FALSE}
+suppressMessages(library(tidyverse))
+
+```
+
 ```{r}
 library(tidyverse)
 dt <- data.frame(id = 1:5, alder)
