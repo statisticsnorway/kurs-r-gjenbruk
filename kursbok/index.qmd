@@ -1,0 +1,10 @@
+---
+title: "Kurs i gjenbruk av kode i R"
+---
+
+Velkommen til kurset i R om gjenbruk av kode med loops, og funksjoner. 
+
+- [Introduksjon til gjenbruk av kode](intro.qmd)
+- [Kontroll setninger med if og else](kontroll.qmd)
+- [For- og whileløkker](loops.qmd)
+- [Hvordan skrive funksjoner](funksjoner.qmd)
