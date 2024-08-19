@@ -1,13 +1,12 @@
 project:
   type: book
-  output-dir: ../docs
+  output-dir: docs
   
-
 execute:
   freeze: auto
 
 book:
-  title: "kurs-r-viderekomne"
+  title: "R kurs i gjenbruk av kode"
   search: true
   cover-image: ./images/Rlogo.png
   repo-url: https://github.com/statisticsnorway/kurs-r-viderekomne
@@ -19,12 +18,10 @@ book:
     center: |
       Gjenbruk av kode i R
   chapters:
-    - intro.qmd
-    - test-intro.qmd
+    - index.qmd
     - kontroll.qmd
     - loops.qmd
     - funksjoner.qmd
-    - apply.qmd
 
 format:
   html:
