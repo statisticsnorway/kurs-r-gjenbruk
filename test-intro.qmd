@@ -1,0 +1,41 @@
+---
+title: "test"
+format: revealjs
+editor: visual
+---
+
+## Introduksjon til gjenbruk
+
+Gjenbruk er et av [åtte grunnleggende IT-arkitekturprinsipper vi bruker i SSB](https://statistics-norway.atlassian.net/wiki/spaces/Arkitektur/pages/3538714625). Gjenbruk gjør at man slipper å kode det samme som noen allerede har gjort, og er lurt med tanke på kostnadseffektivitet, vedlikehold og sikkerhet.
+
+## 4 type gjenbruk
+
+Dette kurset fokusere på det første:
+
+-   **Gjenbruk i egen kode**: Gjenbruk i egen kode vil si å skille ut duplisert kode til loops eller egne funksjoner.
+-   Gjenbruk ved kopiering: Dette er gjenbruk ved klipp og lim fra annen kode, enten ekstern (stack overflow, google, ChatGPT etc) eller intern.
+-   Gjenbruk av biblioteker: Dette er gjenbruk ved klipp og lim fra annen kode, enten ekstern (stack overflow, google, ChatGPT etc) eller intern.
+-   Fellestjenester: Fellestjenester er felles behov som ikke kan løses av bibliotek alene. Dette omfatter blant annet plattformtjenester, mikrotjenester og GUI-baserte tjenester. Her er det snakk om interne tjenester som utvikles av SSB.
+
+## Gjenbruk i egen kode
+
+Fordeler inkludere:
+
+-   Unngår duplisering, dvs. retting og forbedring ett sted i stedet for flere steder.
+-   Mindre kompleksitet og mer lesbart.
+-   Lettere å teste og refaktorere (endre kode til bedre struktur uten å endre funksjonalitet)
+-   Bidrar til å generalisere koden, noe som letter gjenbruk.
+
+Ulemper:
+
+-   Må utvikle og vedlikeholde koden selv.
+-   Unødvendig hvis det allerede finnes en funksjon i et bibliotek som gjør det samme.
+-   Kompetanseterskel
+
+## kode
+
+```{r}
+#| echo: true
+#| output-location: slide
+1 + 1
+```
