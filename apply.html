@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kontroll – R kurs i gjenbruk av kode</title>
+<title>Bruk av apply – R kurs i gjenbruk av kode</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./loops.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./funksjoner.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
-<meta property="og:title" content="Kontroll – R kurs i gjenbruk av kode">
+<meta property="og:title" content="Bruk av apply – R kurs i gjenbruk av kode">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="R kurs i gjenbruk av kode">
 </head>
@@ -124,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./kontroll.html"><span class="chapter-title">Kontroll</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./apply.html"><span class="chapter-title">Bruk av apply</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kontroll.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Kontroll</span></a>
+  <a href="./kontroll.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Kontroll</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -175,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./apply.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Bruk av apply</span></a>
+  <a href="./apply.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Bruk av apply</span></a>
   </div>
 </li>
     </ul>
@@ -188,8 +187,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Innhold</h2>
    
   <ul>
-  <li><a href="#små-kontrollprosesser" id="toc-små-kontrollprosesser" class="nav-link active" data-scroll-target="#små-kontrollprosesser">Små kontrollprosesser</a></li>
-  <li><a href="#store-prosesser" id="toc-store-prosesser" class="nav-link" data-scroll-target="#store-prosesser">Store prosesser</a></li>
+  <li><a href="#apply" id="toc-apply" class="nav-link active" data-scroll-target="#apply"><code>apply</code></a></li>
+  <li><a href="#lapply" id="toc-lapply" class="nav-link" data-scroll-target="#lapply"><code>lapply</code></a></li>
+  <li><a href="#mapply" id="toc-mapply" class="nav-link" data-scroll-target="#mapply"><code>mapply</code></a></li>
+  <li><a href="#andre-funksjoner" id="toc-andre-funksjoner" class="nav-link" data-scroll-target="#andre-funksjoner">Andre funksjoner</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Kontroll</span></h1>
+<h1 class="title"><span class="chapter-title">Bruk av apply</span></h1>
 </div>
 
 
@@ -215,64 +216,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<iframe src="https://ssbno.sharepoint.com/sites/S811/_layouts/15/embed.aspx?UniqueId=1b3a00bb-befe-415a-a660-c630247e1325&amp;embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&amp;referrer=StreamWebApp&amp;referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen="" title="if.mp4">
-</iframe>
-<section id="små-kontrollprosesser" class="level2">
-<h2 class="anchored" data-anchor-id="små-kontrollprosesser">Små kontrollprosesser</h2>
-<p>For å sammenligne og gjøre noe basert på en betingelse kan vi bruke <strong><code>ifelse()</code></strong>. Vi må spesifisere betingelsen først, og så hva som skal returneres dersom betingelsen er sann, og så hva som skal returneres om betingelsen er usann.</p>
+<p>I R er <code>apply</code>, <code>lapply</code> og <code>mapply</code> funksjoner som brukes til å utføre operasjoner på elementer i ulike typer datastrukturer, som lister, vektorer, eller matriser. Disse funksjonene er nyttige for å unngå løkker og forenkle koden når man skal utføre gjentatte operasjoner.</p>
+<section id="apply" class="level2">
+<h2 class="anchored" data-anchor-id="apply"><code>apply</code></h2>
+<p>Funksjonen <code>apply</code> brukes til å bruke en funksjon på rader eller kolonner i en matrise eller et data frame. Du angir dimensjonen (1 for rader, 2 for kolonner) du ønsker å bruke funksjonen på.</p>
+<p>Her er et eksempel med bruk av <code>apply</code> for å summere opp flere koloner:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>alder <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">49</span>, <span class="dv">39</span>, <span class="dv">51</span>, <span class="dv">73</span>, <span class="dv">41</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(alder <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"yngre"</span>, <span class="st">"eldre"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">kommunenummer =</span> <span class="fu">c</span>(<span class="st">"0301"</span>, <span class="st">"4601"</span>, <span class="st">"5001"</span>, <span class="st">"1103"</span>),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">populasjon =</span> <span class="fu">c</span>(<span class="dv">717710</span>, <span class="dv">291940</span>, <span class="dv">214565</span>, <span class="dv">149048</span>), </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boliger=</span> <span class="fu">c</span>(<span class="dv">353256</span>, <span class="dv">146902</span>, <span class="dv">112392</span>, <span class="dv">68034</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(dt[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "yngre" "yngre" "eldre" "eldre" "yngre"</code></pre>
-</div>
-</div>
-<p>Dette kan brukes for å lage nye variabler i et datasett:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, alder)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">alder_kat =</span> <span class="fu">ifelse</span>(alder <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"yngre"</span>, <span class="st">"eldre"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  id alder alder_kat
-1  1    49     yngre
-2  2    39     yngre
-3  3    51     eldre
-4  4    73     eldre
-5  5    41     yngre</code></pre>
+<pre><code>populasjon    boliger 
+   1373263     680584 </code></pre>
 </div>
 </div>
 </section>
-<section id="store-prosesser" class="level2">
-<h2 class="anchored" data-anchor-id="store-prosesser">Store prosesser</h2>
-<p>For å kontrollere store/lengre prosesser kan vi benytte <strong><code>if</code></strong> og <strong><code>else</code></strong>. Disse kan gå over flere linjer og ta formatet:</p>
+<section id="lapply" class="level2">
+<h2 class="anchored" data-anchor-id="lapply"><code>lapply</code></h2>
+<p><code>lapply</code> brukes til å bruke en funksjon på hvert element i en liste eller vektor. Den returnerer en liste med resultatene.</p>
+<p>Her er et eksempel med bruk av <code>lapply</code> for å ta i benytte egen funksjon for å lage fylke på en variabel:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (betingelsen){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"gjør dette ..."</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"gjøre dette istedenfor ..."</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lage_fylke <span class="ot">&lt;-</span> <span class="cf">function</span>(kommunenr, <span class="at">sjekk_lengde=</span><span class="cn">TRUE</span>){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(sjekk_lengde <span class="sc">==</span> <span class="cn">TRUE</span>){</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    kommunenr <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">nchar</span>(kommunenr) <span class="sc">==</span> <span class="dv">3</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">paste</span>(<span class="st">"0"</span>, kommunenr, <span class="at">sep =</span> <span class="st">""</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        kommunenr)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  fylke <span class="ot">&lt;-</span> <span class="fu">substr</span>(kommunenr, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  fylke</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(dt<span class="sc">$</span>kommunenummer, <span class="at">FUN =</span> lage_fylke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "03"
+
+[[2]]
+[1] "46"
+
+[[3]]
+[1] "50"
+
+[[4]]
+[1] "11"</code></pre>
 </div>
-<p>For eksempel:</p>
+</div>
+<p>For å konvertere tilbake output som er en liste til en vektor kan du bruke funksjonen <code>unlist</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">all</span>(dt<span class="sc">$</span>alder <span class="sc">&lt;</span> <span class="dv">70</span>)){</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Alle IOer er under 70"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Alle IOer med alder 70+ er fjernet."</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  dt <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(alder <span class="sc">&lt;</span> <span class="dv">70</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(<span class="fu">lapply</span>(dt<span class="sc">$</span>kommunenummer, <span class="at">FUN =</span> lage_fylke))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Alle IOer med alder 70+ er fjernet."</code></pre>
+<pre><code>[1] "03" "46" "50" "11"</code></pre>
 </div>
+</div>
+</section>
+<section id="mapply" class="level2">
+<h2 class="anchored" data-anchor-id="mapply"><code>mapply</code></h2>
+<p><code>mapply</code> er en multivariat versjon av lapply. Den brukes til å bruke en funksjon på flere lister eller vektorer samtidig. Den returnerer en liste, men resultatet kan forenkles til en vektor eller matrise hvis alle elementer har samme lengde.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>(dt<span class="sc">$</span>kommunenummer, <span class="at">FUN =</span> lage_fylke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id alder
-1  1    49
-2  2    39
-3  3    51
-4  5    41</code></pre>
+<pre><code>0301 4601 5001 1103 
+"03" "46" "50" "11" </code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sjekk_vector <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>(dt<span class="sc">$</span>kommunenummer, sjekk_vector, <span class="at">FUN =</span> lage_fylke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0301 4601 5001 1103 
+"03" "46" "50" "11" </code></pre>
+</div>
+</div>
+</section>
+<section id="andre-funksjoner" class="level2">
+<h2 class="anchored" data-anchor-id="andre-funksjoner">Andre funksjoner</h2>
+<p>Disse funksjoner er i “base” R og fungerer uten å ta i bruk noen ekstra pakker. Det finnes lignende funksjoner i tidyverse, som vi ikke går nærmere inn på her, men du kan lese mer om dem <a href="https://purrr.tidyverse.org/reference/map.html">her</a>.</p>
 
 
 </section>
@@ -700,14 +720,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Kurs i gjenbruk av kode i R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Kurs i gjenbruk av kode i R</span></span>
+      <a href="./funksjoner.html" class="pagination-link" aria-label="Funksjoner">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Funksjoner</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./loops.html" class="pagination-link" aria-label="Løkker">
-        <span class="nav-page-text"><span class="chapter-title">Løkker</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -64,7 +64,7 @@
     "href": "loops.html#while-løkker",
     "title": "Løkker",
     "section": "While-løkker",
-    "text": "While-løkker\nWhile-løkker sjekk en betingelse for å bestemme om den skal fortsette å kjøre. \nFor eksempel:\n\nn &lt;- 1\nwhile (n &lt; 10){\n  print(n)\n  n &lt;- n + runif(1)\n}\n\n[1] 1\n[1] 1.529565\n[1] 1.844455\n[1] 2.797227\n[1] 3.324007\n[1] 3.426515\n[1] 3.874334\n[1] 4.460329\n[1] 5.297282\n[1] 5.800957\n[1] 6.757218\n[1] 7.123583\n[1] 7.298439\n[1] 8.120275\n[1] 8.369448\n[1] 8.88194\n[1] 9.051973\n[1] 9.156756\n[1] 9.969692\n\nn\n\n[1] 10.00749\n\n\nWhile-løkker brukes ofte i prosesser som har en tilfeldig komponent. I eksempelet over trekker runif() funksjonen et tilfeldig tall mellom 0 og 1.",
+    "text": "While-løkker\nWhile-løkker sjekk en betingelse for å bestemme om den skal fortsette å kjøre. \nFor eksempel:\n\nn &lt;- 1\nwhile (n &lt; 10){\n  print(n)\n  n &lt;- n + runif(1)\n}\n\n[1] 1\n[1] 1.612028\n[1] 1.617074\n[1] 2.107442\n[1] 2.744114\n[1] 3.700763\n[1] 4.087587\n[1] 4.673547\n[1] 4.933862\n[1] 5.344429\n[1] 5.51391\n[1] 5.785864\n[1] 6.694603\n[1] 7.500654\n[1] 7.924956\n[1] 8.216082\n[1] 8.466763\n[1] 9.203498\n[1] 9.313956\n[1] 9.504463\n\nn\n\n[1] 10.14426\n\n\nWhile-løkker brukes ofte i prosesser som har en tilfeldig komponent. I eksempelet over trekker runif() funksjonen et tilfeldig tall mellom 0 og 1.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Løkker</span>"
     ]
@@ -137,6 +137,46 @@
     "text": "Varsling i funksjoner\nNoen ganger ønsker vi at funksjonen skal si ifra om noe er litt rart eller feil. For at funksjonen skal stoppe bruker vi stop(). For at det skal gi et varsel bruker vi warning().\nFor eksempel, her stopper funksjon om kommunenr kun er 2-siffer. Ved 3-siffer gis et varsel at en ledende 0 er lagt på.\n\nlage_fylke &lt;- function(kommunenr){\n  if (nchar(kommunenr) &lt;= 2){\n    stop(\"Kommune nummer var ikke gjeldig.\")\n  }\n  if (nchar(kommunenr) == 3){\n    warning(\"Kommunenummer er lendge 3 og har blitt fylt med en ledende 0\\n\")\n    kommunenr &lt;- paste(\"0\", kommunenr, sep = \"\")\n  }\n  fylke &lt;- substr(kommunenr, 1, 2)\n  fylke\n}\n\n\nlage_fylke(kommunenr = \"03\")\n\n\n\nlage_fylke(kommunenr = \"301\")\n\nWarning in lage_fylke(kommunenr = \"301\"): Kommunenummer er lendge 3 og har blitt fylt med en ledende 0\n\n\n[1] \"03\"\n\n\n\nlage_fylke(kommunenr = \"0301\")\n\n[1] \"03\"",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funksjoner</span>"
+    ]
+  },
+  {
+    "objectID": "apply.html",
+    "href": "apply.html",
+    "title": "Bruk av apply",
+    "section": "",
+    "text": "apply\nFunksjonen apply brukes til å bruke en funksjon på rader eller kolonner i en matrise eller et data frame. Du angir dimensjonen (1 for rader, 2 for kolonner) du ønsker å bruke funksjonen på.\nHer er et eksempel med bruk av apply for å summere opp flere koloner:\ndt &lt;- data.frame(kommunenummer = c(\"0301\", \"4601\", \"5001\", \"1103\"),\n                 populasjon = c(717710, 291940, 214565, 149048), \n                 boliger= c(353256, 146902, 112392, 68034))\n\napply(dt[, 2:3], MARGIN = 2, FUN = sum)\n\npopulasjon    boliger \n   1373263     680584",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bruk av apply</span>"
+    ]
+  },
+  {
+    "objectID": "apply.html#lapply",
+    "href": "apply.html#lapply",
+    "title": "Bruk av apply",
+    "section": "lapply",
+    "text": "lapply\nlapply brukes til å bruke en funksjon på hvert element i en liste eller vektor. Den returnerer en liste med resultatene.\nHer er et eksempel med bruk av lapply for å ta i benytte egen funksjon for å lage fylke på en variabel:\n\nlage_fylke &lt;- function(kommunenr, sjekk_lengde=TRUE){\n  if(sjekk_lengde == TRUE){\n    kommunenr &lt;- ifelse(nchar(kommunenr) == 3, \n                        paste(\"0\", kommunenr, sep = \"\"), \n                        kommunenr)\n  }\n  fylke &lt;- substr(kommunenr, 1, 2)\n  fylke\n}\n\nlapply(dt$kommunenummer, FUN = lage_fylke)\n\n[[1]]\n[1] \"03\"\n\n[[2]]\n[1] \"46\"\n\n[[3]]\n[1] \"50\"\n\n[[4]]\n[1] \"11\"\n\n\nFor å konvertere tilbake output som er en liste til en vektor kan du bruke funksjonen unlist:\n\nunlist(lapply(dt$kommunenummer, FUN = lage_fylke))\n\n[1] \"03\" \"46\" \"50\" \"11\"",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bruk av apply</span>"
+    ]
+  },
+  {
+    "objectID": "apply.html#mapply",
+    "href": "apply.html#mapply",
+    "title": "Bruk av apply",
+    "section": "mapply",
+    "text": "mapply\nmapply er en multivariat versjon av lapply. Den brukes til å bruke en funksjon på flere lister eller vektorer samtidig. Den returnerer en liste, men resultatet kan forenkles til en vektor eller matrise hvis alle elementer har samme lengde.\n\nmapply(dt$kommunenummer, FUN = lage_fylke)\n\n0301 4601 5001 1103 \n\"03\" \"46\" \"50\" \"11\" \n\n\n\nsjekk_vector = c(TRUE, FALSE, FALSE, FALSE)\nmapply(dt$kommunenummer, sjekk_vector, FUN = lage_fylke)\n\n0301 4601 5001 1103 \n\"03\" \"46\" \"50\" \"11\"",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bruk av apply</span>"
+    ]
+  },
+  {
+    "objectID": "apply.html#andre-funksjoner",
+    "href": "apply.html#andre-funksjoner",
+    "title": "Bruk av apply",
+    "section": "Andre funksjoner",
+    "text": "Andre funksjoner\nDisse funksjoner er i “base” R og fungerer uten å ta i bruk noen ekstra pakker. Det finnes lignende funksjoner i tidyverse, som vi ikke går nærmere inn på her, men du kan lese mer om dem her.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Bruk av apply</span>"
     ]
   }
 ]
