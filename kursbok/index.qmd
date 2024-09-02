@@ -3,12 +3,13 @@ title: "Kurs i gjenbruk av kode i R"
 number-sections: false
 ---
 
-Velkommen til kurset i R om gjenbruk av kode med loops, og funksjoner. Kurs inkuldere følgende tema: 
+Velkommen til kurset i R om gjenbruk av kode med loops, og funksjoner. Kurs inkludere følgende tema: 
 
 - [Introduksjon til gjenbruk av kode](index.qmd#sec-introduction)
 - [Kontroll setninger med if og else](kontroll.qmd)
 - [For- og whileløkker](loops.qmd)
 - [Hvordan skrive funksjoner](funksjoner.qmd)
+- [Bruk av apply](apply.qmd)
 
 
 ## Introduksjon til gjenbruk av kode {#sec-introduction}

@@ -1,0 +1,59 @@
+---
+title: "Bruk av apply"
+editor: source
+---
+
+I R er `apply`, `lapply` og `mapply` funksjoner som brukes til å utføre operasjoner på elementer i ulike typer datastrukturer, som lister, vektorer, eller matriser. Disse funksjonene er nyttige for å unngå løkker og forenkle koden når man skal utføre gjentatte operasjoner.
+
+## `apply`
+Funksjonen `apply` brukes til å bruke en funksjon på rader eller kolonner i en matrise eller et data frame. Du angir dimensjonen (1 for rader, 2 for kolonner) du ønsker å bruke funksjonen på.
+
+Her er et eksempel med bruk av `apply` for å summere opp flere koloner:
+
+```{r}
+dt <- data.frame(kommunenummer = c("0301", "4601", "5001", "1103"),
+                 populasjon = c(717710, 291940, 214565, 149048), 
+                 boliger= c(353256,	146902, 112392, 68034))
+
+apply(dt[, 2:3], MARGIN = 2, FUN = sum)
+```
+
+## `lapply`
+`lapply` brukes til å bruke en funksjon på hvert element i en liste eller vektor. Den returnerer en liste med resultatene.
+
+Her er et eksempel med bruk av `lapply` for å ta i benytte egen funksjon for å lage fylke på en variabel:
+
+```{r}
+lage_fylke <- function(kommunenr, sjekk_lengde=TRUE){
+  if(sjekk_lengde == TRUE){
+    kommunenr <- ifelse(nchar(kommunenr) == 3, 
+                        paste("0", kommunenr, sep = ""), 
+                        kommunenr)
+  }
+  fylke <- substr(kommunenr, 1, 2)
+  fylke
+}
+
+lapply(dt$kommunenummer, FUN = lage_fylke)
+```
+
+For å konvertere tilbake output som er en liste til en vektor kan du bruke funksjonen `unlist`: 
+```{r}
+unlist(lapply(dt$kommunenummer, FUN = lage_fylke))
+```
+
+## `mapply`
+`mapply` er en multivariat versjon av lapply. Den brukes til å bruke en funksjon på flere lister eller vektorer samtidig. Den returnerer en liste, men resultatet kan forenkles til en vektor eller matrise hvis alle elementer har samme lengde.
+
+
+```{r}
+mapply(dt$kommunenummer, FUN = lage_fylke)
+```
+
+
+```{r}
+sjekk_vector = c(TRUE, FALSE, FALSE, FALSE)
+mapply(dt$kommunenummer, sjekk_vector, FUN = lage_fylke)
+```
+## Andre funksjoner 
+Disse funksjoner er i "base" R og fungerer uten å ta i bruk noen ekstra pakker. Det finnes lignende funksjoner i tidyverse, som vi ikke går nærmere inn på her, men du kan lese mer om dem [her](https://purrr.tidyverse.org/reference/map.html).
