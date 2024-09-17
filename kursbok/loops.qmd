@@ -3,8 +3,7 @@ title: "Løkker"
 editor: visual
 ---
 
-<iframe src="https://ssbno.sharepoint.com/sites/S811/_layouts/15/embed.aspx?UniqueId=cd649512-2899-4231-aeb5-a2f1f709c8eb&amp;embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&amp;referrer=StreamWebApp&amp;referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="loops.mp4">
-
+<iframe src="https://player.vimeo.com/video/1010157128?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="loops">
 </iframe>
 
 For å gjøre den samme prosessen flere ganger kan vi lage løkker. Løkker har noen fordeler:
