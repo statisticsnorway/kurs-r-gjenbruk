@@ -9,7 +9,7 @@ book:
   title: "R kurs i gjenbruk av kode"
   search: true
   cover-image: ./images/Rlogo.png
-  repo-url: https://github.com/statisticsnorway/kurs-r-viderekomne
+  repo-url: https://github.com/statisticsnorway/kurs-r-gjenbruk
   downloads: pdf
   open-graph: true
   sidebar:
